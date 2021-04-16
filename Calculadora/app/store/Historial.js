@@ -3,6 +3,8 @@ Ext.define('Calculadora.store.Historial', {
 
     alias: 'store.historial',
 
+    storeId: 'calculos',
+
     model: 'Calculadora.model.Historial',
 
     data: { items: [

@@ -5,7 +5,7 @@
  */
 Ext.define('Calculadora.Application', {
     extend: 'Ext.app.Application',
-
+    stores: 'Calculadora.store.Historial',
     name: 'Calculadora',
 
     quickTips: false,

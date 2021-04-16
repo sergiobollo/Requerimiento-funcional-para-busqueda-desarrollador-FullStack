@@ -13,6 +13,7 @@ Ext.define("Calculadora.view.main.Calculos", {
   title: "Calculos",
   xtype: "calculos",
   defaultType: "textfield",
+  url: 'add_caclculos',
   items: [
     {
       xtype: "fieldset",
