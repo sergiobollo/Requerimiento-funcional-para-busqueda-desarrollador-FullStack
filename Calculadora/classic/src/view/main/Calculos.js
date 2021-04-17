@@ -8,12 +8,19 @@ var operaciones = Ext.create("Ext.data.Store", {
   ],
 });
 
+var store = Ext.create('Ext.data.Store', {
+  model: "Calculadora.model.Historial"
+});
+
 Ext.define("Calculadora.view.main.Calculos", {
   extend: "Ext.form.Panel",
   title: "Calculos",
   xtype: "calculos",
   defaultType: "textfield",
-  url: 'add_caclculos',
+  store: "historial",
+  requires: [
+    'Calculadora.store.Historial'
+],
   items: [
     {
       xtype: "fieldset",
@@ -55,25 +62,35 @@ Ext.define("Calculadora.view.main.Calculos", {
         var numero1 = parseInt(formData.numero1);
         var numero2 = parseInt(formData.numero2);
         var resultado;
+        var operacion;
 
         switch (formData.operacion) {
           case "+":
             resultado = numero1 + numero2;
+            operacion = 'Suma';
             break;
           case "-":
             resultado = numero1 - numero2;
+            operacion = 'Resta';
             break;
           case "*":
             resultado = numero1 * numero2;
+            operacion = 'Multiplicación';
             break;
           case "/":
             resultado = numero1 / numero2;
+            operacion = 'División';
             break;
         }
+        store.add({ 'numero1': numero1, 'numero2': numero2, 'operacion': operacion, 'resultado': resultado});
+        store.sync();
         Ext.Msg.alert("El resultado es: " + resultado);
+        setTimeout(function(){location.reload()}, 3000);
+
       },
     },
   ],
 
-  listeners: {},
+  listeners: {
+  }
 });

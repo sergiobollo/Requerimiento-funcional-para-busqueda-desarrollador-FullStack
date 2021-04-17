@@ -86,4 +86,7 @@ Ext.define('Calculadora.view.main.Main', {
             xtype: 'historial'
         }]
     }]
+
 });
+
+

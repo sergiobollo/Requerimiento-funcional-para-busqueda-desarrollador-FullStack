@@ -15,5 +15,6 @@ Ext.define('Calculadora.view.main.MainController', {
         if (choice === 'yes') {
             //
         }
-    }
+    },
+    
 });
