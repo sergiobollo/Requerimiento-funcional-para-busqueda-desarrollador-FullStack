@@ -28,14 +28,14 @@ Ext.define("Calculadora.view.main.Calculos", {
       items: [
         {
           xtype: "numberfield",
-          fieldLabel: "Número 1",
+          fieldLabel: "Primer número",
           name: "numero1",
           placeHolder: "Ingrese el primer número",
           required: true,
         },
         {
           xtype: "numberfield",
-          fieldLabel: "Número 2",
+          fieldLabel: "Segundo número",
           name: "numero2",
           placeHolder: "Ingrese el segundo número",
           required: true,
@@ -48,6 +48,7 @@ Ext.define("Calculadora.view.main.Calculos", {
           queryMode: "local",
           displayField: "nombre",
           valueField: "op",
+          required: true,
         },
       ],
     },
@@ -63,7 +64,7 @@ Ext.define("Calculadora.view.main.Calculos", {
         var numero2 = parseInt(formData.numero2);
         var resultado;
         var operacion;
-
+        
         switch (formData.operacion) {
           case "+":
             resultado = numero1 + numero2;
@@ -86,7 +87,6 @@ Ext.define("Calculadora.view.main.Calculos", {
         store.sync();
         Ext.Msg.alert("El resultado es: " + resultado);
         setTimeout(function(){location.reload()}, 3000);
-
       },
     },
   ],
