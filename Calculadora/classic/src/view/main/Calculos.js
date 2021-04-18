@@ -30,13 +30,13 @@ Ext.define("Calculadora.view.main.Calculos", {
           xtype: "numberfield",
           fieldLabel: "Primer valor",
           name: "numero1",
-          required: true,
+          required: true
         },
         {
           xtype: "numberfield",
           fieldLabel: "Segundo valor",
           name: "numero2",
-          required: true,
+          required: true
         },
         {
           xtype: "combobox",
@@ -46,7 +46,7 @@ Ext.define("Calculadora.view.main.Calculos", {
           queryMode: "local",
           displayField: "nombre",
           valueField: "op",
-          required: true,
+          required: true
         },
         {
           xtype: 'displayfield',

@@ -21,6 +21,8 @@ Ext.define('Calculadora.view.main.Historial', {
     ],
 
     columnLines: true,
+
+    autoScroll: true,
  
     buttons: [
         {
@@ -32,6 +34,6 @@ Ext.define('Calculadora.view.main.Historial', {
         }],
 
     listeners: {
-        select: 'onItemSelected'
+
     }
 });
