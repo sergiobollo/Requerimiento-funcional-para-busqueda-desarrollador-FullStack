@@ -2,7 +2,6 @@
 Ext.define('Calculadora.view.main.Historial', {
     extend: 'Ext.grid.Panel',
     xtype: 'historial',
-
     requires: [
         'Calculadora.store.Historial'
     ],
@@ -22,6 +21,15 @@ Ext.define('Calculadora.view.main.Historial', {
     ],
 
     columnLines: true,
+ 
+    buttons: [
+        {
+          text: "Reset",
+          handler: function (btn) {
+            window.localStorage.clear();
+            location.reload();
+          }
+        }],
 
     listeners: {
         select: 'onItemSelected'

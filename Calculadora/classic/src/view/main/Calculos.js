@@ -28,16 +28,14 @@ Ext.define("Calculadora.view.main.Calculos", {
       items: [
         {
           xtype: "numberfield",
-          fieldLabel: "Primer número",
+          fieldLabel: "Primer valor",
           name: "numero1",
-          placeHolder: "Ingrese el primer número",
           required: true,
         },
         {
           xtype: "numberfield",
-          fieldLabel: "Segundo número",
+          fieldLabel: "Segundo valor",
           name: "numero2",
-          placeHolder: "Ingrese el segundo número",
           required: true,
         },
         {
@@ -50,6 +48,13 @@ Ext.define("Calculadora.view.main.Calculos", {
           valueField: "op",
           required: true,
         },
+        {
+          xtype: 'displayfield',
+          name: 'resultado',
+          value: '',
+          id: 'resultados',
+          bold: true
+      }
       ],
     },
   ],
@@ -85,12 +90,15 @@ Ext.define("Calculadora.view.main.Calculos", {
         }
         store.add({ 'numero1': numero1, 'numero2': numero2, 'operacion': operacion, 'resultado': resultado});
         store.sync();
-        Ext.Msg.alert("El resultado es: " + resultado);
+        //Ext.Msg.alert("El resultado es: " + resultado);
+        document.getElementById("resultados").innerHTML = '<b>Resultado = ' + resultado + '</b>';
         setTimeout(function(){location.reload()}, 3000);
       },
     },
-  ],
 
+  ],
+  
   listeners: {
   }
 });
+
