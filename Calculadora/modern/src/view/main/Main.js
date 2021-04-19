@@ -24,13 +24,22 @@ Ext.define('Calculadora.view.main.Main', {
 
     tabBarPosition: 'bottom',
 
-    items: [{
-        title: 'Historial',
+    items: [
+        {
+        title: 'Calculos',
         layout: 'fit',
         items: [{
             xtype: 'mainlist'
         }
     ]
-    }
+    },
+   /* {
+        title: 'Historial',
+        layout: 'fit',
+        items: [{
+            xtype: 'mainhistorial',
+        }
+    ]
+    } */
     ]
 });

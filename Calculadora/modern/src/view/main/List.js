@@ -1,40 +1,103 @@
-
-Ext.define('Calculadora.view.main.List', {
-    extend: 'Ext.grid.Grid',
-    xtype: 'mainlist',
-
-    requires: [
-        'Calculadora.store.Historial'
+var operaciones = Ext.create("Ext.data.Store", {
+    fields: ["op", "nombre"],
+    data: [
+      { op: "-", nombre: "Resta" },
+      { op: "+", nombre: "Suma" },
+      { op: "*", nombre: "Multiplicación" },
+      { op: "/", nombre: "División" },
     ],
+  });
+  
+  var store = Ext.create('Ext.data.Store', {
+    model: "Calculadora.model.Personnel"
+  });
+  
+  Ext.define("Calculadora.view.main.List", {
+    extend: "Ext.form.Panel",
+    title: "Calculos",
+    xtype: "mainlist",
+    defaultType: "textfield",
+    store: "historial",
 
-    title: 'Historial',
-
-    store: {
-        type: 'historial'
-    },
-
-    columns: [
-        { text: 'Número de cálculo',  dataIndex: 'id', flex: 1},
-        { text: 'Primer número',  dataIndex: 'numero1', flex: 1},
-        { text: 'Segundo número', dataIndex: 'numero2', flex: 1},
-        { text: 'Tipo de operación', dataIndex: 'operacion', flex: 1},
-        { text: 'Resultado', dataIndex: 'resultado', flex: 1},
+    items: [
+      {
+        xtype: "fieldset",
+        title: "Seleccione valores a calcular",
+        items: [
+          {
+            xtype: "numberfield",
+            fieldLabel: "Primer valor",
+            name: "numero1",
+            required: true
+          },
+          {
+            xtype: "numberfield",
+            fieldLabel: "Segundo valor",
+            name: "numero2",
+            required: true
+          },
+          {
+            xtype: "combobox",
+            fieldLabel: "Operación",
+            name: "operacion",
+            store: operaciones,
+            queryMode: "local",
+            displayField: "nombre",
+            valueField: "op",
+            required: true
+          },
+          {
+            xtype: 'displayfield',
+            name: 'resultado',
+            value: '',
+            id: 'resultados',
+            bold: true
+        }
+        ],
+      },
     ],
-
-    columnLines: true,
-
-    autoScroll: true,
- 
+  
     buttons: [
-        {
-          text: "Reset",
-          handler: function (btn) {
-            window.localStorage.clear();
-            location.reload();
+      {
+        text: "Calcular",
+        handler: function (btn) {
+          var formObj = btn.up("mainlist");
+          var formData = formObj.getValues();
+          var numero1 = parseInt(formData.numero1);
+          var numero2 = parseInt(formData.numero2);
+          var resultado;
+          var operacion;
+          
+          switch (formData.operacion) {
+            case "+":
+              resultado = numero1 + numero2;
+              operacion = 'Suma';
+              break;
+            case "-":
+              resultado = numero1 - numero2;
+              operacion = 'Resta';
+              break;
+            case "*":
+              resultado = numero1 * numero2;
+              operacion = 'Multiplicación';
+              break;
+            case "/":
+              resultado = numero1 / numero2;
+              operacion = 'División';
+              break;
           }
-        }],
-
+          store.add({ 'numero1': numero1, 'numero2': numero2, 'operacion': operacion, 'resultado': resultado});
+          store.sync();
+          //Ext.Msg.alert("El resultado es: " + resultado);
+          document.getElementById("resultados").innerHTML = '<b>Resultado = ' + resultado + '</b>';
+          setTimeout(function(){location.reload()}, 3000);
+        },
+      },
+  
+    ],
+    
     listeners: {
-
     }
-});
+  });
+  
+  
