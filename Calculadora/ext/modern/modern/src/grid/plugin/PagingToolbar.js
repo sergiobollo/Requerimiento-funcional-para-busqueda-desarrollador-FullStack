@@ -17,7 +17,7 @@
  * });
  *
  * Ext.create('Ext.grid.Grid', {
- *     title: 'DC Personnel',
+ *     title: 'DC Historial',
  *
  *     store: store,
  *     plugins: {

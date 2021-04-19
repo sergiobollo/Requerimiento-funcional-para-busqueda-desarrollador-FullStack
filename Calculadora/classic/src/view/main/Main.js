@@ -12,12 +12,7 @@ Ext.define('Calculadora.view.main.Main', {
     requires: [
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
-
-        'Calculadora.view.main.MainController',
-        'Calculadora.view.main.MainModel',
-        'Calculadora.view.main.Calculos',
-        'Calculadora.view.main.Historial'
-    ],
+        ],
 
     controller: 'main',
     viewModel: 'main',
