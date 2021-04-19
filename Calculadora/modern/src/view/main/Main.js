@@ -10,8 +10,12 @@ Ext.define('Calculadora.view.main.Main', {
     requires: [
         'Ext.MessageBox',
         'Ext.layout.Fit',
-
+        'Calculadora.store.Personnel'
     ],
+
+    store: {
+        type: 'personnel'
+    },
 
     controller: 'main',
     viewModel: 'main',

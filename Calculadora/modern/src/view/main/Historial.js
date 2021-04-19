@@ -1,7 +1,8 @@
 
-Ext.define('Calculadora.view.main.Mainhistorial', {
+Ext.define('Calculadora.view.main.Historial', {
     extend: 'Ext.grid.Panel',
     xtype: 'mainhistorial',
+    alias: 'widget.mainhistorial',
     requires: [
         'Calculadora.store.Personnel'
     ],
